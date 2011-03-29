@@ -56,7 +56,7 @@
             theme                      : 'star', //star, bar, medal, tinystar
             
             /** Options **/
-            input                      : 'select', //the input type, select only currently supported
+            input                      : 'select', //the input type, select or radio
             existingRatingOnEdit       : false,
             showHover                  : true,     //should display the current rating via hover
             disabled                   : false,    //can the rating be changed? You can also disable rating edit by setting the select box to disabled.
