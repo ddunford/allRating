@@ -62,12 +62,12 @@
             disabled                   : false,    //can the rating be changed? You can also disable rating edit by setting the select box to disabled.
 
             /** Events **/
-            onClickEvent                : function(value, input) { },
+            onClickEvent                : function(value, input) { }
 
             /** Not yet implemented **/
             /** outputScaleCount    : 10,       //scale the rating back, or up to given number **/
         }
-    };
+    }
 
     /**Main Code**/
     $.fn.allRating = function(options) {
@@ -267,11 +267,10 @@
 
             $('#'+input.ratingId+' .'+config.segmentContainerClass).hover(function(e) {
                 $(this).siblings('.'+config.hoverClass).css({
-                    position:'absolute',
-                    top: this.offsetTop+$('#'+input.ratingId).find('a.'+config.segmentClass).height()+4,
-                    left: this.offsetLeft
-                });
-                $(this).siblings('.'+config.hoverClass).fadeIn("slow");
+                    'position':'absolute',
+                    'top': ($(this).position().top+$(this).siblings('.'+config.hoverClass).height()),
+                    'left': $(this).position().left
+                }).fadeIn();
             }, function() { //hover out
                 $(this).stop().siblings('.'+config.hoverClass).fadeOut("fast");
             });

@@ -9,7 +9,7 @@ div.rating a.ratingSegmentCancel{ cursor:pointer; background: url('allRating/can
 div.rating a.ratingEditDisabled { cursor:default; }
 div.rating div.ratingSegmentContainer { float:left; z-index: 1;}
 
-div.rating div.ratingHoverContainer { z-index: 100; background: #F2F2F2; color: #000; border: 1px solid #999; padding: 8px 4px; display:none; width: auto;}
+div.rating div.ratingHoverContainer { z-index: 100; background: #F2F2F2; color: #000; border: 1px solid #999; padding: 8px 4px; display:none; width: auto; position:absolute;}
 div.rating div.ratingHoverContainer label { display:block; margin: 4px; }
 
 /**
