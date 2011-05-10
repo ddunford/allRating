@@ -3,7 +3,7 @@
 
 div.rating { float:left; overflow: visible;}
 
-div.rating a.ratingSegment { cursor:pointer; padding: 0px 2px; width: 10px; float:left;}
+div.rating a.ratingSegment { cursor:pointer; padding: 0px 1px; width: 10px; float:left;}
 div.rating a.ratingSegmentCancel{ cursor:pointer; background: url('allRating/cancel.png') no-repeat; height: 15px; width: 15px; margin: 0px 4px; float:left; display:none;}
 
 div.rating a.ratingEditDisabled { cursor:default; }
