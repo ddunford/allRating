@@ -39,10 +39,57 @@
        }
    });
 
+/** multiple inputs with multiple forms submitting */
+
+   $('.multiple').allRating({
+       theme: 'medal',
+       onClickEvent: function(input) {
+
+            var form = $(input).closest("form");
+
+            $.ajax({
+                type: "POST",
+                url: form.attr('action'),
+                data: input.attr('name')+'='+input.val(),
+                success: function(){
+                    $('#message').fadeIn();
+                    setTimeout("$('#message').fadeOut()", 500);
+                }
+            });
+       }
+   });
+
+   $('.example5').allRating({
+       theme: 'medal',
+       onClickEvent: function(input) {
+
+       }
+   });
+
+    $('#disable').click(function() {
+        $('.example5')
+            .allRating(
+                'disable', []
+            )
+        return false;
+    });
+
+
   });
   </script>
  </head>
  <body>
+ <script type="text/javascript"><!--
+ google_ad_client = "ca-pub-2915392395539474";
+ /* allrating */
+ google_ad_slot = "0412296596";
+ google_ad_width = 728;
+ google_ad_height = 90;
+ //-->
+ </script>
+ <script type="text/javascript"
+ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+ </script>
   <div id="mainContainer">
   <div class="example">
   <h2>Rating Bar (with select input)</h2>
@@ -182,8 +229,101 @@
    </select>
   </div>
   </div>
+  <div class="example">
+  <h2>Rating with multiple inputs</h2>
+   <ol>
+    <li><code><pre>
+   $('.multiple').allRating({
+       theme: 'medal',
+       onClickEvent: function(input) {
+
+            var form = $(input).closest("form");
+
+            $.ajax({
+                type: "POST",
+                url: form.attr('action'),
+                data: input.attr('name')+'='+input.val(), //This could also be form.serialize() if each rating has a separate form?
+                success: function(){
+                    $('#message').fadeIn();
+                }
+            });
+       }
+   });
+    </pre></code></ol>
+   </ol>
+  <form method="post" action="submitRating.php">
+  <div class="block">
+   <p>Rating 1</p>
+   <select name="rating4" class="multiple">
+    <option value="0">No Rating</option>
+    <option value="1">Below Average</option>
+    <option value="2">Average</option>
+    <option value="3">Above Average</option>
+    <option value="4" selected="selected">Awesome</option>
+    <option value="5">Epic</option>
+   </select>
+  </div>
+  <div class="block">
+   <p>Rating 2</p>
+   <select name="rating2" class="multiple">
+    <option value="0">No Rating</option>
+    <option value="1">Below Average</option>
+    <option value="2">Average</option>
+    <option value="3" selected="selected">Above Average</option>
+    <option value="4">Awesome</option>
+    <option value="5">Epic</option>
+   </select>
+  </div>
+  <div class="block">
+   <p>Rating 3</p>
+   <select name="rating3" class="multiple">
+    <option value="0">No Rating</option>
+    <option value="1" selected="selected">Below Average</option>
+    <option value="2">Average</option>
+    <option value="3">Above Average</option>
+    <option value="4">Awesome</option>
+    <option value="5">Epic</option>
+   </select>
+  </div>
+  </form>
+  <div id="message">Rating Submitted</div>
+  </div>
+
+  <div class="example">
+  <h2>Rating with Redraw, enable, and disable</h2>
+   <ol>
+    <li><code><pre>
+   $('.example5').allRating({
+       theme: 'medal',
+       onClickEvent: function(input) {
+
+       }
+   });
+
+    </pre></code></ol>
+   </ol>
+  <div class="block">
+   <p>Rating</p>
+   <select name="rating4" class="example5">
+    <option value="0">No Rating</option>
+    <option value="1">Below Average</option>
+    <option value="2">Average</option>
+    <option value="3">Above Average</option>
+    <option value="4" selected="selected">Awesome</option>
+    <option value="5">Epic</option>
+   </select>
+    <br/>
+    <a href="#" id="redraw">Redraw</a>
+    <a href="#" id="disable">Disable</a>
+    <a href="#" id="enable">enable</a>
+  </div>
+  </div>
+
+
+
+
   <div class="clear"></div>
-  <a href="https://github.com/dunfy/allRating/tarball/master" class="download">Download</a>
+  <a href="https://github.com/dunfy/allRating/tarball/dev" class="download">Download</a>
   <p class="contact"><a href="mailto:allrating@dunfy.me.uk">Contact Me</a></p>
   </div>
  </body>

@@ -71,7 +71,23 @@
 
     /**Main Code**/
     $.fn.allRating = function(options) {
+
         var config = $.extend({}, $.rating.defaults, options);
+
+        // Handle API methods
+        if(typeof arguments[0]=='string'){
+            // Perform API methods on individual elements
+            if(this.length>1){
+                var args = arguments;
+                return this.each(function(){
+                    $.fn.allRating.apply($(this), args);
+                });
+            };
+            // Invoke API method handler
+            $.fn.allRating[arguments[0]].apply(this, $.makeArray(arguments).slice(1) || []);
+            // Quick exit...
+            return this;
+        };
 
         this.each( function() {
 
@@ -305,5 +321,39 @@
     $.fn.allRating._ui = function () {
         return(((1+Math.random())*0x10000)|0).toString(16).substring(1);
     };
+
+    $.fn.allRating.destroy = function(rating) { 
+       $(rating).destroy(); 
+    }
+
+    $.extend($.fn.allRating, {
+        redraw:  function(input, config) {
+            var inputId = input.attr('id');
+            var index   = inputId.replace(config.ratingContainerId+'-','').replace('-input','');
+
+            $.fn.allRating.destroy('#'+config.ratingContainerId+'-'+index);
+
+
+            var input = $.fn.allRating.fetchInput( input, config, index );
+            var html = $.fn.allRating.generateHtml(input, config);
+
+            $(this).after(html);
+
+            $.fn.allRating.addActiveStars(input, config, true);
+
+            $.fn.allRating.initEvents(input, config);
+        },
+
+        disable: function(input, config) {
+            $(input).find(config.segmentClass).addClass(config.segmentDisabledClass);
+
+        },
+
+        enable: function(input,config) {
+        var index   = inputId.replace(config.ratingContainerId+'-','').replace('-input','');
+        $('#'+config.ratingContainerId+'-'+index).find(config.segmentClass).removeClass(config.segmentDisabledClass);
+        }
+    });
+
 
 })( jQuery );
